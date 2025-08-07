@@ -16,6 +16,18 @@ int main()
 {
     int a, b, quotient, remainder;
     scanf("%d %d", &a, &b);
+    asm volatile(
+        "movl %2, %%eax;"
+        "cdq;"
+        "idivl %3;"
+        "movl %%eax, %0;"
+        "movl %%edx, %1;"
+        : "=r"(quotient), "=r"(remainder)
+        : "r"(a), "r"(b)
+        : "%eax", "%edx");
+    printf("Quotient = %u, Remainder = %u", quotient, remainder);
+                                                                                
+    //multiply pgm
     // asm volatile(
     //     "movb %1, %%al;"
     //     "mulb %2;"
@@ -23,16 +35,5 @@ int main()
     //     : "=r"(result)
     //     : "r"(a), "r"(b)
     //     : "%al");
-
-    asm volatile(
-        "movl %2, %%eax;"
-        "cltd;"
-        "idivl %3;"
-        "movl %%eax, %0;"
-        "movl %%edx, %1;"
-        : "=r"(quotient), "=r"(remainder)
-        : "r"(a), "r"(b)
-        : "%eax", "%edx");
-    printf("Quotient = %d, Remainder = %d", quotient, remainder);
     return 0;
 }
