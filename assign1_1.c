@@ -3,7 +3,6 @@
 int main()
 {
     int choice;
-
     printf("Select operation: 1. unsigned short  2. signed short  3. unsigned long  4. signed long 5. char\n");
     scanf("%d", &choice);
 
@@ -23,11 +22,10 @@ int main()
         printf("%hu\n", result);
         break;
     }
-
     case 2:
     {
         short a, b, result;
-        scanf("%d %d", &a, &b);
+        scanf("%hd %hd", &a, &b);
         asm volatile(
             "movw %1, %%ax;"
             "addw %2, %%ax;"
@@ -38,7 +36,6 @@ int main()
         printf("%hd\n", result);
         break;
     }
-
     case 3:
     {
         unsigned long a, b, result;
