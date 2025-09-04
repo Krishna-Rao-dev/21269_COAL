@@ -66,7 +66,7 @@ int main()
         break;
     }
 
-    case 6:
+    case 5:
     {
         char a, b, result;
         scanf(" %c %c", &a, &b);
